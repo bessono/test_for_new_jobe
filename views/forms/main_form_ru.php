@@ -57,7 +57,9 @@
 		<table>
 		<tr>
 		<td>Пароль:</td>
-		<td><input type="password" id="password" name="password"></td>
+		<td>
+		<span class="error_panel" id="password_error">Пароль не может быть пустым</span>
+		<input type="password" id="password" name="password" onkeyup="jQuery('#password_error').slideUp();"></td>
 		</tr>
 		<tr>
 		<td>Пароль:</td>                      	

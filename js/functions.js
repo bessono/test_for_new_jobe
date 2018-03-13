@@ -21,3 +21,18 @@ function step3(){
 	jQuery("#password_panel").slideDown();
 	jQuery("#contacts_panel").slideUp();
 }
+
+function step4(){
+	if(jQuery("#password").val() === "") { jQuery("#password_error").slideDown(); return 0;}
+	if(jQuery("#password").val() === jQuery("#repassword").val()){
+		jQuery("#password_panel").slideUp();	
+	} else {
+		document.getElementById("password").value = "";
+		document.getElementById("repassword").value = "";
+		alert("Пароли не совпадают!");
+	}
+}
+
+function step5(){
+	
+}
