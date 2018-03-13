@@ -1,3 +1,4 @@
+<form action="/?action=set_user_data" method="post" enctype="multipart/form-data">
 <div class="main_panel">
 	<div class="panel">
 	Форма регистрации новых пользователей.<br>
@@ -72,5 +73,18 @@
 	</div>
 	</div>
 <!-- ================================================================== -->
+	<div id="avatar_panel" class="panel" style="display:none;">
+		Загрузите аватар
+		<br>
+		<img class="avatar" alt="" id="image_preview" src="">
+  		<div><input type="file" id="image" name="image" onchange="avatarPreview(jQuery(this)[0]);"></div>
+  		<div class="buttons_panel">
+    		<input type="button" value="Назад" onclick="step3();">
+    		<input type="submit" value="Завершить">
+  		</div>
+	</div>
+
+<!-- ================================================================== -->
 </div>
+</form>
 

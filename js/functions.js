@@ -16,6 +16,7 @@ function step1(){
 }
 
 function step3(){
+	jQuery("#avatar_panel").slideUp();
 	if(jQuery("#phone").val() === "") { jQuery("#phone_error").slideDown(); return 0;}
         if(jQuery("#email").val() === "") { jQuery("#email_error").slideDown(); return 0;}
 	jQuery("#password_panel").slideDown();
@@ -25,7 +26,8 @@ function step3(){
 function step4(){
 	if(jQuery("#password").val() === "") { jQuery("#password_error").slideDown(); return 0;}
 	if(jQuery("#password").val() === jQuery("#repassword").val()){
-		jQuery("#password_panel").slideUp();	
+		jQuery("#password_panel").slideUp();
+		jQuery("#avatar_panel").slideDown();
 	} else {
 		document.getElementById("password").value = "";
 		document.getElementById("repassword").value = "";
@@ -33,6 +35,13 @@ function step4(){
 	}
 }
 
-function step5(){
-	
+function avatarPreview(input){
+  if ( input.files && input.files[0] ) {
+    if ( input.files[0].type.match('image.*') ) {
+      var reader = new FileReader();
+      reader.onload = function(e) { $('#image_preview').attr('src', e.target.result); }
+      reader.readAsDataURL(input.files[0]);
+    } else console.log('is not image mime type');
+  } else console.log('not isset files data or files API not supordet');
 }
+

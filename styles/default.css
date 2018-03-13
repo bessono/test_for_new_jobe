@@ -27,3 +27,8 @@ body, td {
 	display:none;
 	font-size:12px;
 }
+
+.avatar{
+	width:200px;
+	height:200px;
+}
