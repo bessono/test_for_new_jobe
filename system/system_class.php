@@ -15,6 +15,7 @@ class system_class {
 			$_POST[$name] = strip_tags($_POST[$name]);
 			$_POST[$name] = htmlentities($_POST[$name], ENT_QUOTES, "UTF-8");
 			$_POST[$name] = htmlspecialchars($_POST[$name], ENT_QUOTES);
+			$_POST[$name] = str_replace("--","",$_POST[$name]);	
 		}	
 	}
 

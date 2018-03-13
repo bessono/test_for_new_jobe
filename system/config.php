@@ -11,3 +11,6 @@ define("DB_PASSWORD","jmf3k1somw3");
 
 define("IMG_PATH","/var/www/test_for_new_jobe/img/");
 
+// errors settings
+
+ini_set("display_errors", 0);
