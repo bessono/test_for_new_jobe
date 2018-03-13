@@ -2,6 +2,8 @@
 
 class system_class {
 
+	public $view_output;
+
 	public function make_view($view_name){
 		include("./views/header.php");
 		include("./views/forms/".$view_name.".php");

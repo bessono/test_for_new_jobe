@@ -9,6 +9,14 @@ class main_programm extends system_class {
 		if((isset($_GET['lang'])) && ($_GET['lang'] != "ru") && ($_GET['lang'] != "eng")){
 			$_GET['lang'] = "ru";
 		}
+		if((isset($_GET['action'])) && ($_GET['action'] == "check_login")){
+			$this->check_login();
+			exit(0);
+		}
+		if((isset($_GET['action'])) && ($_GET['action'] == "login")){
+			$this->make_view("login_form");
+			exit(0);
+		}
 		if((isset($_GET['action'])) && ($_GET['action'] == "set_user_data")){
 			$this->set_user_data();
 		} else {
@@ -20,6 +28,7 @@ class main_programm extends system_class {
 		$this->check_post_data();
 		$img_link = $this->upload_avatar();	
 		$link = $this->connect();
+		$_POST['password'] = md5($_POST['password']);
 		if(!mysqli_query($link,"INSERT INTO users SET name='".$_POST['name']."',
 							last_name='".$_POST['last_name']."',
 							phone='".$_POST['phone']."',
@@ -27,12 +36,12 @@ class main_programm extends system_class {
 							password='".$_POST['password']."',
 							avatar='".$img_link."'
 ")) {
-		$out_result = "Ошибка сохранения";
+		$this->view_output['result'] = "Ошибка сохранения";
 } else {
-		$out_result = "Данные сохранены в базе";
+		$this->view_output['result'] = "Данные сохранены в базе";
 }
 		$this->disconnect($link);
-	
+		$this->view_output['img_link'] = $img_link;
 		$this->make_view("finish_form");
 	}
 
@@ -49,8 +58,38 @@ class main_programm extends system_class {
                 	return "/img/default.png";
             	} else {
                 	copy($_FILES['image']['tmp_name'],IMG_PATH.$file_name);
-			return $file_name;
+			return "/img/".$file_name;
             	}
 		}		
+	}
+	
+	public function check_login(){
+		$this->check_post_data();
+		$_POST['password'] = md5($_POST['password']);
+		$link = $this->connect();
+		$query = mysqli_query($link,"SELECT * FROM users WHERE email='".$_POST['email']."' AND password='".$_POST['password']."'");
+		$result = mysqli_fetch_array($query);
+		if(isset($result['name'])){
+		$this->view_output = "
+		<table>
+		<tr>
+			<td><img style='width:50px;' src='".$result['avatar']."'></td>
+			<td>".$result['name']." ".$result['last_name']."</td>
+		</tr>
+		<tr>
+			<td>Телефон</td>
+			<td>".$result['phone']."</td>
+		<tr>
+		<tr>
+			<td>e-mail</td>
+			<td>".$result['email']."</td>
+		</tr>
+		</table>
+		";
+		} else {
+		$this->view_output = "Введены не верные данные";
+		}
+		$this->disconnect($link);
+		$this->make_view("user_form");
 	}
 }	
