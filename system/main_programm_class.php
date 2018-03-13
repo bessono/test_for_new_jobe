@@ -9,6 +9,10 @@ class main_programm extends system_class {
 		if((isset($_GET['lang'])) && ($_GET['lang'] != "ru") && ($_GET['lang'] != "eng")){
 			$_GET['lang'] = "ru";
 		}
+		if((isset($_GET['ajax'])) && ($_GET['ajax'] == "email_check")){
+			$this->check_email();
+			exit(0);
+		}
 		if((isset($_GET['action'])) && ($_GET['action'] == "check_login")){
 			$this->check_login();
 			exit(0);
@@ -91,5 +95,19 @@ class main_programm extends system_class {
 		}
 		$this->disconnect($link);
 		$this->make_view("user_form");
+	}
+
+	public function check_email(){
+		$this->check_post_data();
+		$link = $this->connect();
+		$query = mysqli_query($link,"SELECT * FROM users WHERE email='".$_POST['email']."'");
+		$result = mysqli_num_rows($query);
+		
+		if($result <= 0) {
+			print "ok";
+		} else {
+			print "error";
+		}
+		$this->disconnect($link);
 	}
 }	

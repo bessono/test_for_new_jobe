@@ -19,8 +19,15 @@ function step3(){
 	jQuery("#avatar_panel").slideUp();
 	if(jQuery("#phone").val() === "") { jQuery("#phone_error").slideDown(); return 0;}
         if(jQuery("#email").val() === "") { jQuery("#email_error").slideDown(); return 0;}
-	jQuery("#password_panel").slideDown();
-	jQuery("#contacts_panel").slideUp();
+	eMail = jQuery("#email").val();
+	jQuery.post("/?ajax=email_check",{email:eMail},function(data){
+		if(data == "ok"){
+			jQuery("#password_panel").slideDown();
+			jQuery("#contacts_panel").slideUp();
+		} else {
+			alert("Такой e-mail есть в базе");
+		}
+	});
 }
 
 function step4(){
