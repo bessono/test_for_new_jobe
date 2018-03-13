@@ -53,6 +53,7 @@ class main_programm extends system_class {
 	public function upload_avatar(){
 		if(isset($_FILES['image']['name'])){
 			$file_data = explode(".",$_FILES['image']['name']);
+			if(!isset($file_data[1])) {return "/img/default.png";}
 			if(($file_data[1] != "jpg") && ($file_data[1] != "png") && ($file_data[1] != gif)){
 				exit("Формат файла не поддерживается");
 			}

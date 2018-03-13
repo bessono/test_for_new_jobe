@@ -20,6 +20,7 @@ function step3(){
 	if(jQuery("#phone").val() === "") { jQuery("#phone_error").slideDown(); return 0;}
         if(jQuery("#email").val() === "") { jQuery("#email_error").slideDown(); return 0;}
 	eMail = jQuery("#email").val();
+	if(eMail.indexOf('@') == -1 ){ jQuery("#email_error").slideDown(); return 0;}
 	jQuery.post("/?ajax=email_check",{email:eMail},function(data){
 		if(data == "ok"){
 			jQuery("#password_panel").slideDown();
