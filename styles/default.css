@@ -1,17 +1,29 @@
-body, td, {
+body, td {
 	font-size:12px;
 	background-color:white;
 	border:none;
+	color:black;
 }
 
 .panel {
+	padding:10px;
 	width:500px;
 	margin:auto;
+	margin-top:20px;
 	border: 1px solid silver;
 	border-radius:4px;
 	box-shadow: 3px 3px 4;
+	text-align:center;
 }
 .buttons_panel{
 	margin:auto;
 	border:none;
+}
+.error_panel {
+	margin:auto;
+	background-color:red;
+	color:black;
+	border-radius:2px;
+	display:none;
+	font-size:12px;
 }
