@@ -1,0 +1,17 @@
+body, td, {
+	font-size:12px;
+	background-color:white;
+	border:none;
+}
+
+.panel {
+	width:500px;
+	margin:auto;
+	border: 1px solid silver;
+	border-radius:4px;
+	box-shadow: 3px 3px 4;
+}
+.buttons_panel{
+	margin:auto;
+	border:none;
+}
