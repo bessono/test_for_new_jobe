@@ -1,4 +1,4 @@
-<form action="/?action=set_user_data" method="post" enctype="multipart/form-data">
+<form action="./?action=set_user_data" method="post" enctype="multipart/form-data">
 <div class="main_panel">
 	<div class="panel">
 	New user form registration.<br>
@@ -10,7 +10,7 @@
 	</div>
 <!-- ================================================================== -->	
 	<div id="name_panel" class="panel">
-	<a href="/?action=login">I have account</a>
+	<a href="./?action=login">I have account</a>
 		<table>
 			<tr>
 			<td>Your first name:</td>

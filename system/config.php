@@ -13,4 +13,12 @@ define("IMG_PATH","/var/www/test_for_new_jobe/img/");
 
 // errors settings
 
-ini_set("display_errors", 0);
+ini_set("display_errors", 1);
+
+// default language session 
+
+if(!isset($_SESSION['lang'])){
+	$_SESSION['lang'] = "ru";
+}
+
+//-----------------------------------

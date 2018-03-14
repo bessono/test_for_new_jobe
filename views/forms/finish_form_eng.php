@@ -2,6 +2,6 @@
 	<?php print $this->view_output['result']; ?>
 	<script type="text/javascript">
 		alert("<?php print $this->view_output['result'] ?>");
-		location.href = "/";
+		location.href = "./";
 	</script>
 </div>

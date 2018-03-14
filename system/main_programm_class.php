@@ -3,11 +3,9 @@
 class main_programm extends system_class {
 
 	public function init(){
-		if(!isset($_GET['lang'])){
-			$_GET['lang'] = "ru";
-		}
-		if((isset($_GET['lang'])) && ($_GET['lang'] != "ru") && ($_GET['lang'] != "eng")){
-			$_GET['lang'] = "ru";
+		
+		if(isset($_GET['lang'])){
+			$_SESSION['lang'] = $_GET['lang'];
 		}
 		if((isset($_GET['ajax'])) && ($_GET['ajax'] == "email_check")){
 			$this->check_email();
@@ -24,7 +22,7 @@ class main_programm extends system_class {
 		if((isset($_GET['action'])) && ($_GET['action'] == "set_user_data")){
 			$this->set_user_data();
 		} else {
-			$this->make_view("main_form_".$_GET['lang']);
+			$this->make_view("main_form");
 		}
 	}
 
@@ -40,9 +38,9 @@ class main_programm extends system_class {
 							password='".$_POST['password']."',
 							avatar='".$img_link."'
 ")) {
-		$this->view_output['result'] = "Ошибка сохранения";
+		$this->view_output['result'] = "Error";
 } else {
-		$this->view_output['result'] = "Данные сохранены в базе";
+		$this->view_output['result'] = "Ok";
 }
 		$this->disconnect($link);
 		$this->view_output['img_link'] = $img_link;
@@ -78,7 +76,7 @@ class main_programm extends system_class {
 		$this->view_output = "
 		<table>
 		<tr>
-			<td><img style='width:50px;' src='".$result['avatar']."'></td>
+			<td><img style='width:50px;' src='.".$result['avatar']."'></td>
 			<td>".$result['name']." ".$result['last_name']."</td>
 		</tr>
 		<tr>
@@ -92,7 +90,7 @@ class main_programm extends system_class {
 		</table>
 		";
 		} else {
-		$this->view_output = "Введены не верные данные";
+			$this->view_output = "Введены не верные данные";
 		}
 		$this->disconnect($link);
 		$this->make_view("user_form");
