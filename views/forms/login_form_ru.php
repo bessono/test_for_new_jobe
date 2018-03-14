@@ -1,7 +1,7 @@
 <div class="panel">
 	Для входа введите ваши данные:<br>
-	<a href="/">Я не зарегистрирован</a>
-	<form action="/?action=check_login" method="post">
+	<a href="./">Я не зарегистрирован</a>
+	<form action="./?action=check_login" method="post">
 	<table>
 		<tr>
 		<td>e-mail</td>

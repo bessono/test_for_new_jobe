@@ -1,7 +1,7 @@
 <div class="panel">
 	Insert your e-mail and password:<br>
-	<a href="/">I want register</a>
-	<form action="/?action=check_login" method="post">
+	<a href="./">I want register</a>
+	<form action="./?action=check_login" method="post">
 	<table>
 		<tr>
 		<td>e-mail</td>
